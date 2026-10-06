@@ -1,5 +1,6 @@
 import express from 'express'
 import dotenv from 'dotenv'
+import { runMigrations } from './config/migrations'
 
 dotenv.config()
 
@@ -11,6 +12,7 @@ app.get('/', (req, res) => {
 })
 
 const PORT = process.env.PORT || 3333
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`)
+app.listen(PORT, async () => {
+  console.log(`Servidor rodando na porta ${PORT}`)
+  await runMigrations()
 })

@@ -1,5 +1,6 @@
 import express from 'express'
 import dotenv from 'dotenv'
+import cors from 'cors'
 import { runMigrations } from './config/migrations'
 import authRoutes from './routes/authRoutes'
 import tasksRoutes from './routes/tasksRoutes'
@@ -8,6 +9,7 @@ dotenv.config()
 
 const app = express()
 app.use(express.json())
+app.use(cors())
 
 app.get('/', (req, res) => {
   res.json({ message: 'Task Manager API is running!' })
